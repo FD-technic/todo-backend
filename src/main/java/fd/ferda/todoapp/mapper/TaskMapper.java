@@ -1,9 +1,9 @@
 package fd.ferda.todoapp.mapper;
 
 import fd.ferda.todoapp.dto.TaskDTO;
-import fd.ferda.todoapp.dto.TaskSaveDTO;
+import fd.ferda.todoapp.dto.TaskCreateDTO;
+import fd.ferda.todoapp.dto.TaskEditDTO;
 import fd.ferda.todoapp.entity.TaskEntity;
-import org.springframework.stereotype.Component;
 
 
 public class TaskMapper {
@@ -19,7 +19,7 @@ public class TaskMapper {
         return dto;
     }
 
-    public static TaskEntity toEntity(TaskSaveDTO dto) {
+    public static TaskEntity toEntity(TaskCreateDTO dto) {
         TaskEntity entity = new TaskEntity();
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
@@ -28,7 +28,7 @@ public class TaskMapper {
         return entity;
     }
 
-    public static void updateEntity(TaskEntity entity, TaskSaveDTO dto) {
+    public static void updateEntity(TaskEntity entity, TaskEditDTO dto) {
         if (dto.getName() != null) {
             entity.setName(dto.getName());
         }

@@ -1,8 +1,11 @@
 package fd.ferda.todoapp.dto;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 
-public class TaskSaveDTO {
+public class TaskEditDTO {
 
     private String name;
 
@@ -10,9 +13,9 @@ public class TaskSaveDTO {
 
     private LocalDate endDate;
 
-    public TaskSaveDTO() {}
+    public TaskEditDTO() {}
 
-    public TaskSaveDTO(String name, String description, LocalDate endDate) {
+    public TaskEditDTO(String name, String description, LocalDate endDate) {
         this.name = name;
         this.description = description;
         this.endDate = endDate;
