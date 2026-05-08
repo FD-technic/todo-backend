@@ -33,4 +33,14 @@ public class TodoController {
 
         return taskService.findTasks(filter, pageable);
     }
+
+    @PostMapping("/tasks/{id}/complete")
+    public TaskDTO completeTask(@PathVariable Long id) {
+        return taskService.completeTask(id);
+    }
+
+    @PostMapping("/tasks/{id}/delete")
+    public void deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+    }
 }

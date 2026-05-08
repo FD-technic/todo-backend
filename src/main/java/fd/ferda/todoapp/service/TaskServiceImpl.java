@@ -60,7 +60,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void completeTask(Long id) {
+    public TaskDTO completeTask(Long id) {
+        System.out.println("Complete ID: " + id);
 
         TaskEntity entity = getTaskOrThrow(id);
 
@@ -68,7 +69,7 @@ public class TaskServiceImpl implements TaskService {
             entity.setFinishDate(LocalDate.now());
         }
 
-        taskRepository.save(entity);
+        return TaskMapper.toDTO(taskRepository.save(entity));
     }
 
     @Override

@@ -17,7 +17,7 @@ public interface TaskService {
 
     Page<TaskDTO> findTasks(TaskFilter filter, Pageable pageable);
 
-    void completeTask(Long id);
+    TaskDTO completeTask(Long id);
 
     void deleteTask(Long id);
 
