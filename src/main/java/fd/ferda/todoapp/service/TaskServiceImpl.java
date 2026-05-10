@@ -9,12 +9,15 @@ import fd.ferda.todoapp.mapper.TaskMapper;
 import fd.ferda.todoapp.repository.TaskRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+
+import static fd.ferda.todoapp.specification.TaskSpecification.build;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -49,7 +52,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Page<TaskDTO> findTasks(TaskFilter filter, Pageable pageable) {
-        return taskRepository.findAll(pageable)
+        Specification<TaskEntity> spec = build(filter, LocalDate.now());
+        System.out.println("Filter: " + spec);
+
+        return taskRepository.findAll(spec, pageable)
                 .map(TaskMapper::toDTO);
     }
 

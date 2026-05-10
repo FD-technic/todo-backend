@@ -4,6 +4,8 @@ import fd.ferda.todoapp.dto.TaskDTO;
 import fd.ferda.todoapp.dto.TaskCreateDTO;
 import fd.ferda.todoapp.dto.TaskEditDTO;
 import fd.ferda.todoapp.entity.TaskEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 
 public class TaskMapper {
@@ -30,6 +32,9 @@ public class TaskMapper {
 
     public static void updateEntity(TaskEntity entity, TaskEditDTO dto) {
         if (dto.getName() != null) {
+            if (dto.getName().isBlank()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
             entity.setName(dto.getName());
         }
 
