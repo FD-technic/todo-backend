@@ -8,6 +8,10 @@ spring:
     username: root
     password: ""
 
+  web:
+    locale: en
+    locale-resolver: fixed
+
   jpa:
     open-in-view: true
     hibernate:

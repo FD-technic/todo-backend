@@ -7,7 +7,6 @@ import fd.ferda.todoapp.filter.TaskFilter;
 import fd.ferda.todoapp.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,17 +25,14 @@ public class TodoController {
         return taskService.addTask(taskCreateDTO);
     }
 
-    @GetMapping
-    public Page<TaskDTO> findTasks(@ModelAttribute TaskFilter filter) {
-
-        Pageable pageable = PageRequest.of(filter.getPage(), filter.getPageSize());
+    @GetMapping("/tasks")
+    public Page<TaskDTO> findTasks(@ModelAttribute TaskFilter filter, Pageable pageable) {
 
         return taskService.findTasks(filter, pageable);
     }
 
     @PutMapping("/tasks/{id}/edit")
     public TaskDTO editTask(@PathVariable Long id, @RequestBody @Valid TaskEditDTO taskEditDTO) {
-        System.out.println("edit");
         return taskService.editTask(id, taskEditDTO);
     }
 

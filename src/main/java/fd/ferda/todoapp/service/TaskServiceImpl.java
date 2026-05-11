@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public TaskDTO editTask(Long id, TaskEditDTO task) {
-        System.out.println("EDIT!");
+
         TaskEntity entity = getTaskOrThrow(id);
 
         TaskMapper.updateEntity(entity, task);
@@ -53,7 +53,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Page<TaskDTO> findTasks(TaskFilter filter, Pageable pageable) {
         Specification<TaskEntity> spec = build(filter, LocalDate.now());
-        System.out.println("Filter: " + spec);
 
         return taskRepository.findAll(spec, pageable)
                 .map(TaskMapper::toDTO);
@@ -61,7 +60,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDTO completeTask(Long id) {
-        System.out.println("Complete ID: " + id);
 
         TaskEntity entity = getTaskOrThrow(id);
 

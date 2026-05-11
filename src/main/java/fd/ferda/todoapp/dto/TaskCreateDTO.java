@@ -12,7 +12,7 @@ public class TaskCreateDTO {
 
     private String description;
 
-    @FutureOrPresent
+    @FutureOrPresent(message = "Datum pro ukončení úkolu nemí být v minulosti")
     private LocalDate endDate;
 
     public TaskCreateDTO() {}
